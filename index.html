@@ -1,0 +1,1223 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100b20">
+<title>For Kirani 🤍</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root {
+  --pink: #f4a5c9;
+  --purple: #c6a5ff;
+  --paper: #fff9ef;
+  --ink: #554052;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  color: #fff8ff;
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(ellipse at 15% 10%, #472653 0, transparent 40%),
+    radial-gradient(ellipse at 90% 85%, #292251 0, transparent 40%),
+    #100b20;
+  overflow-x: hidden;
+}
+
+button { font: inherit; }
+
+#stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow {
+  position: fixed;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .14;
+  pointer-events: none;
+}
+
+.glow.one {
+  background: #e879b9;
+  top: -120px;
+  left: -100px;
+}
+
+.glow.two {
+  background: #8b5cf6;
+  bottom: -120px;
+  right: -100px;
+}
+
+main {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 28px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.screen {
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  animation: appear .7s ease both;
+}
+
+.hidden { display: none !important; }
+
+.tag {
+  display: inline-block;
+  padding: 9px 15px;
+  border: 1px solid #ffadd83d;
+  border-radius: 30px;
+  color: #ffb8d9;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-bottom: 23px;
+}
+
+h1 {
+  font: 500 clamp(39px, 9vw, 61px)/1.12 'Playfair Display', serif;
+}
+
+.gradient {
+  background: linear-gradient(100deg, #fff, #ffafd6, #c9b4ff);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.subtitle {
+  color: #c1b8d2;
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 350px;
+  margin: 20px auto 27px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 13px 23px;
+  color: white;
+  border: 1px solid #ffffff36;
+  border-radius: 50px;
+  background: linear-gradient(110deg, #9e63e7, #dc66aa);
+  box-shadow: 0 8px 30px #c15ec52c;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.btn:hover { transform: translateY(-3px); }
+.btn:active { transform: scale(.97); }
+.btn:disabled { opacity: .45; cursor: default; }
+
+.footnote {
+  margin-top: 24px;
+  color: #8e83a5;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.heart-intro {
+  font-size: 67px;
+  display: block;
+  margin-bottom: 16px;
+  animation: heartbeat 1.7s infinite;
+  filter: drop-shadow(0 0 20px #ff9fcf70);
+}
+
+/* GAME MENANGKAP HATI */
+.game-card {
+  padding: 20px 14px 15px;
+  border: 1px solid #ffffff20;
+  border-radius: 23px;
+  background: #ffffff08;
+  backdrop-filter: blur(14px);
+}
+
+.game-title {
+  font: 500 27px 'Playfair Display', serif;
+  margin-bottom: 8px;
+}
+
+.game-desc {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #bfb4d4;
+}
+
+.scorebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  margin: 19px 0 11px;
+  border-radius: 13px;
+  border: 1px solid #ffffff14;
+  background: #ffffff08;
+  font-size: 12px;
+}
+
+#score {
+  color: #ffadd7;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.progress {
+  height: 5px;
+  border-radius: 10px;
+  background: #ffffff15;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+#progress {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #b17aff, #ff9ed0);
+  transition: width .2s;
+}
+
+#gameCanvas {
+  width: 100%;
+  height: 350px;
+  display: block;
+  border-radius: 15px;
+  border: 1px solid #ffffff14;
+  background: linear-gradient(#1a1230, #28183d);
+  touch-action: none;
+}
+
+.game-help {
+  color: #bdb1d0;
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 13px;
+}
+
+/* SAMPUL BUKU */
+.book-cover {
+  width: min(100%, 340px);
+  min-height: 465px;
+  margin: 0 auto;
+  position: relative;
+  padding: 35px 25px;
+  overflow: hidden;
+  border: 1px solid #f3d4bb80;
+  border-radius: 8px 20px 20px 8px;
+  background:
+    radial-gradient(ellipse at 50% 40%, #a75c7d50, transparent 55%),
+    linear-gradient(135deg, #58344d, #291a38 60%, #4c2b50);
+  box-shadow:
+    -8px 10px 0 #1a1228,
+    -13px 15px 35px #0005,
+    inset 5px 0 8px #ffffff0c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-cover::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 1px solid #e9c99b7d;
+  border-radius: 4px 13px 13px 4px;
+  pointer-events: none;
+}
+
+.cover-top {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #efd3ba;
+  text-align: center;
+}
+
+.cover-flower {
+  font-size: 57px;
+  margin: 28px 0 22px;
+  filter: drop-shadow(0 0 20px #ffc5dd35);
+  animation: heartbeat 3s infinite;
+}
+
+.cover-title {
+  font: 500 clamp(29px, 8vw, 38px)/1.25 'Playfair Display', serif;
+  color: #fff2e8;
+  margin-bottom: 15px;
+}
+
+.cover-name {
+  font: italic 20px 'Playfair Display', serif;
+  color: #f3b7d4;
+  line-height: 1.6;
+}
+
+.cover-line {
+  width: 60px;
+  height: 1px;
+  background: #e8c49e;
+  margin: 24px auto;
+}
+
+.cover-caption {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #e0c6d8;
+  line-height: 1.8;
+  text-align: center;
+  margin-top: 0;
+}
+
+.cover-footer {
+  position: static;
+  margin-top: 30px;
+  color: #d5b6c9;
+  font-size: 10px;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.cover-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-top: 23px;
+}
+
+/* BUKU DIGITAL */
+.book-area {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  perspective: 1500px;
+}
+
+.book {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  border-radius: 5px 13px 13px 5px;
+  filter: drop-shadow(0 20px 30px #0004);
+}
+
+.page {
+  min-width: 0;
+  min-height: 430px;
+  position: relative;
+  overflow: hidden;
+  color: var(--ink);
+  padding: 30px 27px 45px;
+  text-align: left;
+  background:
+    radial-gradient(ellipse at 10% 10%, #ffffffa6, transparent 50%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      #a68b8a0b 32px
+    ),
+    var(--paper);
+  box-shadow: inset 0 0 22px #8b62520c;
+}
+
+.page.left {
+  border-radius: 6px 0 0 6px;
+  border-right: 1px solid #bda4a044;
+  box-shadow: inset -9px 0 15px -14px #4c2a42;
+}
+
+.page.right {
+  border-radius: 0 9px 9px 0;
+  box-shadow: inset 9px 0 15px -14px #4c2a42;
+}
+
+.page-heading {
+  font-size: 9px;
+  color: #ad7797;
+  letter-spacing: 2px;
+  margin-bottom: 19px;
+}
+
+.page-title {
+  font: 500 clamp(23px, 4vw, 32px)/1.25 'Playfair Display', serif;
+  color: #70465f;
+  margin-bottom: 19px;
+}
+
+.page-body {
+  font: 14px/2 'DM Sans', sans-serif;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  color: #594858;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font: italic 12px 'Playfair Display', serif;
+  color: #a87c98;
+}
+
+.page-heart {
+  color: #d38cae;
+  font-size: 19px;
+  text-align: center;
+  margin: 20px 0 0;
+}
+
+.page.right.turning {
+  transform-origin: left center;
+  animation: turnForward .48s ease both;
+}
+
+.page.right.turning-back {
+  transform-origin: left center;
+  animation: turnBack .48s ease both;
+}
+
+@keyframes turnForward {
+  0% { transform: rotateY(0); opacity: 1; }
+  45% { transform: rotateY(-75deg); opacity: .7; }
+  100% { transform: rotateY(0); opacity: 1; }
+}
+
+@keyframes turnBack {
+  0% { transform: rotateY(0); opacity: 1; }
+  45% { transform: rotateY(75deg); opacity: .7; }
+  100% { transform: rotateY(0); opacity: 1; }
+}
+
+.book-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.book-controls .btn {
+  min-height: 43px;
+  padding: 12px 17px;
+  font-size: 12px;
+}
+
+#pageIndicator {
+  color: #c9bddc;
+  font-size: 11px;
+  min-width: 90px;
+}
+
+/* HALAMAN PENUTUP */
+.end-icon {
+  font-size: 62px;
+  margin-bottom: 20px;
+  animation: heartbeat 1.8s infinite;
+}
+
+.end-card {
+  padding: 32px 23px;
+  border-radius: 24px;
+  border: 1px solid #ffffff25;
+  background: #ffffff09;
+  backdrop-filter: blur(15px);
+}
+
+.end-card h2 {
+  font: 500 clamp(32px, 8vw, 43px)/1.3 'Playfair Display', serif;
+  margin: 15px 0;
+}
+
+.end-text {
+  color: #d3c8e5;
+  font-size: 13px;
+  line-height: 2;
+  white-space: pre-line;
+  margin-top: 20px;
+}
+
+.signature {
+  font: italic 23px 'Playfair Display', serif;
+  color: #ffb4d8;
+  margin-top: 25px;
+}
+
+.confetti {
+  position: fixed;
+  top: -30px;
+  z-index: 10;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* RESPONSIVE HP */
+@media (max-width: 560px) {
+  main { padding: 22px 12px; }
+
+  #gameCanvas { height: 320px; }
+
+  .book-area { max-width: 440px; }
+
+  .book {
+    grid-template-columns: 1fr;
+    max-width: 390px;
+    margin: auto;
+  }
+
+  .page {
+    min-height: 350px;
+    padding: 27px 24px 45px;
+  }
+
+  .page.left { display: none; }
+
+  .page.right {
+    border-radius: 5px 12px 12px 5px;
+    border-left: 5px solid #e7d5b8;
+    box-shadow: inset 7px 0 12px -12px #4c2a42;
+  }
+
+  .page-body {
+    font-size: 14px;
+    line-height: 1.95;
+  }
+
+  .page-title { font-size: 28px; }
+
+  .book-controls { gap: 8px; }
+
+  .book-controls .btn {
+    padding: 12px 14px;
+  }
+
+  .book-cover { min-height: 450px; }
+}
+
+@media (max-width: 350px) {
+  .page {
+    min-height: 370px;
+    padding: 23px 19px 42px;
+  }
+
+  .page-body { font-size: 13px; }
+  #gameCanvas { height: 290px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<canvas id="stars"></canvas>
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<main>
+
+  <!-- 1. HALAMAN PEMBUKA -->
+  <section class="screen" id="home">
+    <span class="heart-intro">♡</span>
+    <div class="tag">A LITTLE SURPRISE FOR YOU</div>
+
+    <h1>From Izzul<br>
+      <span class="gradient">Yang Paling Ganteng.</span>
+    </h1>
+
+    <p class="subtitle">
+      Hai, Sella sayang 🤍<br>
+      aku punya sesuatu yang sudah aku siapkan untukmu.
+      Tapi sebelum membacanya, kumpulkan dulu 10 hati yaa.
+    </p>
+
+    <button class="btn" onclick="startGame()">
+      Mulai Permainan ♡
+    </button>
+
+    <p class="footnote">MADE WITH LOVE · JUST FOR Sella</p>
+  </section>
+
+  <!-- 2. GAME MENANGKAP HATI -->
+  <section class="screen hidden" id="gameScreen">
+    <div class="game-card">
+      <div class="tag">LEVEL 01 · CATCH THE HEARTS</div>
+      <h2 class="game-title">Catch my hearts! 💗</h2>
+      <p class="game-desc">
+        Tangkap 10 hati untuk membuka surat spesialmu.
+      </p>
+
+      <div class="scorebar">
+        <span>Hati yang terkumpul</span>
+        <span>
+          <b id="score">0</b> /
+          <b id="target">10</b> ♡
+        </span>
+      </div>
+
+      <div class="progress">
+        <div id="progress"></div>
+      </div>
+
+      <canvas id="gameCanvas"
+        aria-label="Tangkap hati dengan menggerakkan keranjang.">
+      </canvas>
+
+      <p class="game-help">
+        Geser mouse atau sentuh layar untuk menggerakkan keranjang.<br>
+        Tangkap hati yang jatuh sampai semuanya terkumpul!
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. SAMPUL BUKU YANG SUDAH DIRAPIKAN -->
+  <section class="screen hidden" id="coverScreen">
+    <div class="book-cover">
+      <div class="cover-top">A LETTER FOR Sella</div>
+
+      <div class="cover-flower">🤍</div>
+
+      <h2 class="cover-title">Happy Birthday</h2>
+
+      <p class="cover-name">
+        Kirani Oktavia<br>
+        Sella Romandoni
+      </p>
+
+      <div class="cover-line"></div>
+
+      <p class="cover-caption">
+        A LITTLE BOOK OF WISHES<br>
+        FOR YOUR 20TH BIRTHDAY
+      </p>
+
+      <p class="cover-footer">20TH BIRTHDAY · 2026</p>
+    </div>
+
+    <div class="cover-actions">
+      <p class="subtitle" style="margin:0 auto 8px">
+        Ada pesan spesial dariku untukmu.<br>
+        Yuk, buka dan baca perlahan. 🤍
+      </p>
+
+      <button class="btn" onclick="openBook()">
+        Baca Buku ♡
+      </button>
+    </div>
+  </section>
+
+  <!-- 4. BUKU DIGITAL -->
+  <section class="screen hidden" id="bookScreen">
+    <div class="tag">A LITTLE BOOK FOR SELLA</div>
+
+    <div class="book-area">
+      <div class="book">
+
+        <article class="page left" id="leftPage">
+          <div class="page-heading">A LETTER FOR YOU · ♡</div>
+          <h2 class="page-title" id="leftTitle"></h2>
+          <div class="page-body" id="leftBody"></div>
+          <div class="page-heart">♡</div>
+          <div class="page-number" id="leftNumber"></div>
+        </article>
+
+        <article class="page right" id="rightPage">
+          <div class="page-heading">HAPPY 20TH BIRTHDAY</div>
+          <h2 class="page-title" id="rightTitle"></h2>
+          <div class="page-body" id="rightBody"></div>
+          <div class="page-heart">♡</div>
+          <div class="page-number" id="rightNumber"></div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="book-controls">
+      <button class="btn" id="prevBtn" onclick="changePage(-1)">
+        ← Sebelumnya
+      </button>
+
+      <span id="pageIndicator">Halaman 1–2</span>
+
+      <button class="btn" id="nextBtn" onclick="changePage(1)">
+        Selanjutnya →
+      </button>
+    </div>
+
+    <p class="footnote">BACALAH PERLAHAN, SAYANG 🤍</p>
+  </section>
+
+  <!-- 5. HALAMAN PENUTUP -->
+  <section class="screen hidden" id="endingScreen">
+    <div class="end-card">
+      <div class="tag">THE END, BUT NOT OUR STORY</div>
+      <div class="end-icon">💗</div>
+
+      <h2 class="gradient">
+        Happy 20th Birthday,<br>
+        Sella Sayang.
+      </h2>
+
+      <p class="end-text">Semoga hari ini menjadi salah satu
+hari paling indah dalam hidupmu.
+
+Terima kasih sudah hadir di dunia,
+dan terima kasih sudah hadir di hidupku.
+
+Semoga aku masih bisa menemanimu
+di ulang tahun-ulang tahun berikutnya.
+
+I love you, more than words can say. ❤️</p>
+
+      <p class="signature">Always yours ♡</p>
+    </div>
+
+    <button class="btn" style="margin-top:20px" onclick="celebrate()">
+      Rayakan Sekali Lagi ✨
+    </button>
+  </section>
+
+</main>
+
+<script>
+// ===========================================
+// PENGATURAN GAME
+// Ubah 10 menjadi 5 jika ingin lebih singkat
+// ===========================================
+const TARGET = 10;
+
+// ===========================================
+// PESAN ULANG TAHUN KIRANI
+// ===========================================
+const PAGES = [
+  {
+    title: "Happy Birthday, Sayangku 🤍",
+    text: `Happy birthday, sayangku, Kirani Oktavia Sella Romandoni 🤍🎂
+
+Selamat bertambah usia yang ke-20 yaa, sayang. Nggak kerasa sekarang kamu udah 20 tahun aja.`
+  },
+  {
+    title: "Doa Terbaik Untukmu",
+    text: `Semoga di umur yang baru ini kamu selalu sehat, bahagia, dilancarkan semua urusannya, dimudahkan segala langkahnya, dan apa yang selama ini kamu semogakan bisa satu per satu jadi kenyataan.
+
+Aku berharap kamu selalu punya banyak alasan buat tersenyum, bahkan di hari-hari yang mungkin nggak berjalan sesuai keinginanmu.`
+  },
+  {
+    title: "Aku Ingin Selalu Ada",
+    text: `Kalau nanti ada hari yang berat, jangan merasa harus menghadapi semuanya sendirian yaa. Aku mungkin nggak selalu bisa membuat semuanya baik-baik saja, tapi aku ingin tetap ada buat kamu, menemani kamu sebisaku.`
+  },
+  {
+    title: "Terima Kasih, Sayang",
+    text: `Terima kasih yaa udah hadir di hidupku dan jadi seseorang yang begitu berarti buat aku. Aku bersyukur bisa kenal kamu, bisa sayang sama kamu, dan bisa menjadi bagian dari cerita hidupmu.`
+  },
+  {
+    title: "Tentang Kita",
+    text: `Aku nggak tahu ke depannya akan ada hal apa saja yang harus kita lewati, tapi aku berharap kita bisa terus belajar memahami satu sama lain, saling menguatkan, dan tumbuh jadi lebih baik bersama.`
+  },
+  {
+    title: "Semoga Semua Mimpimu Terwujud",
+    text: `Semoga di usia 20 ini, kebahagiaanmu semakin banyak, air matamu karena sedih semakin sedikit, dan semua impianmu perlahan bisa tercapai.`
+  },
+  {
+    title: "Untuk Tahun-Tahun Mendatang",
+    text: `Aku juga berharap semoga aku masih bisa ikut merayakan ulang tahunmu di tahun-tahun berikutnya, melihat kamu tumbuh, melihat kamu meraih apa yang kamu inginkan, dan tetap menjadi orang yang kamu cari saat ingin berbagi cerita.`
+  },
+  {
+    title: "Akhir Surat, Bukan Akhir Cerita",
+    text: `Sekali lagi, selamat ulang tahun, sayangku. Bahagia selalu yaa, panjang umur, sehat selalu, dan jangan pernah merasa kamu sendirian.
+
+Aku sayang kamu, lebih dari yang mungkin bisa aku ungkapkan lewat kata-kata. ❤️🫶🏻`
+  }
+];
+
+// ===========================================
+// EFEK BINTANG
+// ===========================================
+const starsCanvas = document.getElementById('stars');
+const starsCtx = starsCanvas.getContext('2d');
+let stars = [];
+
+function resizeStars() {
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+
+  starsCanvas.width = innerWidth * dpr;
+  starsCanvas.height = innerHeight * dpr;
+  starsCanvas.style.width = innerWidth + 'px';
+  starsCanvas.style.height = innerHeight + 'px';
+
+  starsCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  stars = Array.from({length: 100}, () => ({
+    x: Math.random() * innerWidth,
+    y: Math.random() * innerHeight,
+    r: Math.random() * 1.5 + .3,
+    phase: Math.random() * 6
+  }));
+}
+
+function drawStars() {
+  starsCtx.clearRect(0, 0, innerWidth, innerHeight);
+  const t = performance.now() / 1000;
+
+  stars.forEach(s => {
+    const a = .25 + .65 * (.5 + .5 * Math.sin(t + s.phase));
+
+    starsCtx.beginPath();
+    starsCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    starsCtx.fillStyle = `rgba(255,225,250,${a})`;
+    starsCtx.fill();
+  });
+
+  requestAnimationFrame(drawStars);
+}
+
+resizeStars();
+drawStars();
+window.addEventListener('resize', resizeStars);
+
+// ===========================================
+// NAVIGASI HALAMAN
+// ===========================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.add('hidden');
+  });
+
+  const el = document.getElementById(id);
+  el.classList.remove('hidden');
+  el.style.animation = 'none';
+
+  void el.offsetWidth;
+
+  el.style.animation = 'appear .7s ease both';
+  window.scrollTo(0, 0);
+}
+
+// ===========================================
+// GAME MENANGKAP HATI
+// ===========================================
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+let W = 0, H = 0;
+let basketX = 0;
+let hearts = [];
+let particles = [];
+let score = 0;
+let running = false;
+let lastTime = 0;
+let spawnTimer = 0;
+let animationId = null;
+
+const basketWidth = 78;
+
+function resizeGame() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+
+  W = rect.width;
+  H = rect.height;
+
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  basketX = basketX || W / 2;
+  basketX = Math.max(
+    basketWidth / 2,
+    Math.min(W - basketWidth / 2, basketX)
+  );
+}
+
+function startGame() {
+  cancelAnimationFrame(animationId);
+  showScreen('gameScreen');
+
+  score = 0;
+  hearts = [];
+  particles = [];
+  spawnTimer = 0;
+  lastTime = 0;
+  running = true;
+  basketX = 0;
+
+  document.getElementById('score').textContent = '0';
+  document.getElementById('target').textContent = TARGET;
+  document.getElementById('progress').style.width = '0%';
+
+  resizeGame();
+  basketX = W / 2;
+
+  for (let i = 0; i < 4; i++) {
+    spawnHeart(-i * H / 4 - 20);
+  }
+
+  animationId = requestAnimationFrame(gameLoop);
+}
+
+function spawnHeart(y = -30) {
+  hearts.push({
+    x: 20 + Math.random() * Math.max(1, W - 40),
+    y,
+    size: 18 + Math.random() * 8,
+    speed: 100 + Math.random() * 65 + score * 2,
+    phase: Math.random() * 6,
+    drift: (Math.random() - .5) * 28
+  });
+}
+
+function drawHeart(x, y, size, color = '#ff9ecf') {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(size / 20, size / 20);
+
+  ctx.beginPath();
+  ctx.moveTo(0, 7);
+  ctx.bezierCurveTo(-20, -5, -12, -17, 0, -8);
+  ctx.bezierCurveTo(12, -17, 20, -5, 0, 7);
+  ctx.closePath();
+
+  ctx.fillStyle = color;
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 13;
+  ctx.fill();
+
+  ctx.restore();
+}
+
+function drawBasket() {
+  ctx.save();
+
+  ctx.font = '43px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.shadowColor = '#ff9bcf';
+  ctx.shadowBlur = 15;
+
+  ctx.fillText('🧺', basketX, H - 34);
+
+  ctx.restore();
+}
+
+function sparkles(x, y) {
+  for (let i = 0; i < 10; i++) {
+    particles.push({
+      x, y,
+      vx: (Math.random() - .5) * 150,
+      vy: (Math.random() - .6) * 150,
+      life: .6,
+      max: .6,
+      size: 2 + Math.random() * 3
+    });
+  }
+}
+
+function gameLoop(time) {
+  if (!running) return;
+
+  const dt = lastTime
+    ? Math.min((time - lastTime) / 1000, .035)
+    : 0;
+
+  lastTime = time;
+  spawnTimer += dt;
+
+  ctx.clearRect(0, 0, W, H);
+
+  if (spawnTimer > Math.max(.43, .8 - score * .02)) {
+    spawnHeart();
+    spawnTimer = 0;
+  }
+
+  for (let i = hearts.length - 1; i >= 0; i--) {
+    const h = hearts[i];
+
+    h.y += h.speed * dt;
+    h.x += Math.sin(time / 600 + h.phase) * h.drift * dt;
+
+    h.x = Math.max(15, Math.min(W - 15, h.x));
+
+    drawHeart(h.x, h.y, h.size);
+
+    const bx = basketX;
+    const by = H - 35;
+
+    const hitX = Math.abs(h.x - bx) < basketWidth / 2;
+    const hitY =
+      h.y + h.size * .35 >= by - 15 &&
+      h.y - h.size * .35 <= by + 15;
+
+    if (hitX && hitY) {
+      score++;
+      sparkles(h.x, h.y);
+      hearts.splice(i, 1);
+
+      document.getElementById('score').textContent = score;
+
+      document.getElementById('progress').style.width =
+        Math.min(100, score / TARGET * 100) + '%';
+
+      if (score >= TARGET) {
+        winGame();
+        return;
+      }
+    } else if (h.y > H + 25) {
+      hearts.splice(i, 1);
+    }
+  }
+
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+
+    p.x += p.vx * dt;
+    p.y += p.vy * dt;
+    p.vy += 90 * dt;
+    p.life -= dt;
+
+    if (p.life <= 0) {
+      particles.splice(i, 1);
+      continue;
+    }
+
+    ctx.globalAlpha = p.life / p.max;
+    ctx.fillStyle = '#ffd4f0';
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.globalAlpha = 1;
+  drawBasket();
+
+  ctx.fillStyle = '#ffffff65';
+  ctx.font = '10px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('CATCH THE LOVE ♡', W / 2, 20);
+
+  animationId = requestAnimationFrame(gameLoop);
+}
+
+function moveBasket(clientX) {
+  const rect = canvas.getBoundingClientRect();
+
+  basketX = Math.max(
+    basketWidth / 2,
+    Math.min(W - basketWidth / 2, clientX - rect.left)
+  );
+}
+
+canvas.addEventListener('pointermove', e => {
+  moveBasket(e.clientX);
+});
+
+canvas.addEventListener('pointerdown', e => {
+  moveBasket(e.clientX);
+
+  try {
+    canvas.setPointerCapture(e.pointerId);
+  } catch (_) {}
+});
+
+window.addEventListener('keydown', e => {
+  if (!running) return;
+
+  if (['ArrowLeft', 'ArrowRight', 'a', 'A', 'd', 'D'].includes(e.key)) {
+    e.preventDefault();
+  }
+
+  if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') {
+    basketX -= 28;
+  }
+
+  if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') {
+    basketX += 28;
+  }
+
+  basketX = Math.max(
+    basketWidth / 2,
+    Math.min(W - basketWidth / 2, basketX)
+  );
+});
+
+window.addEventListener('resize', () => {
+  if (!document.getElementById('gameScreen').classList.contains('hidden')) {
+    resizeGame();
+  }
+});
+
+// ===========================================
+// KEMENANGAN GAME DAN BUKU
+// ===========================================
+function winGame() {
+  running = false;
+  cancelAnimationFrame(animationId);
+  confetti();
+
+  setTimeout(() => showScreen('coverScreen'), 900);
+}
+
+function openBook() {
+  currentPage = 0;
+  renderBook();
+  showScreen('bookScreen');
+}
+
+let currentPage = 0;
+let pageBusy = false;
+
+function fillPage(side, data, number) {
+  document.getElementById(side + 'Title').textContent = data.title;
+  document.getElementById(side + 'Body').textContent = data.text;
+  document.getElementById(side + 'Number').textContent = '— ' + number + ' —';
+}
+
+function renderBook() {
+  const leftIndex = currentPage;
+  const rightIndex = currentPage + 1;
+
+  fillPage('left', PAGES[leftIndex], leftIndex + 1);
+  fillPage('right', PAGES[rightIndex], rightIndex + 1);
+
+  document.getElementById('pageIndicator').textContent =
+    `Halaman ${leftIndex + 1}–${rightIndex + 1} dari ${PAGES.length}`;
+
+  document.getElementById('prevBtn').disabled = currentPage === 0;
+
+  document.getElementById('nextBtn').textContent =
+    rightIndex >= PAGES.length - 1
+      ? 'Selesai membaca ♡'
+      : 'Selanjutnya →';
+}
+
+function changePage(direction) {
+  if (pageBusy) return;
+
+  if (direction < 0) {
+    if (currentPage === 0) return;
+
+    pageBusy = true;
+
+    const page = document.getElementById('rightPage');
+    page.classList.remove('turning');
+    void page.offsetWidth;
+    page.classList.add('turning-back');
+
+    setTimeout(() => {
+      currentPage = Math.max(0, currentPage - 2);
+      renderBook();
+      page.classList.remove('turning-back');
+      pageBusy = false;
+    }, 350);
+
+    return;
+  }
+
+  if (currentPage + 2 >= PAGES.length) {
+    showScreen('endingScreen');
+    confetti();
+    return;
+  }
+
+  pageBusy = true;
+
+  const page = document.getElementById('rightPage');
+  page.classList.remove('turning');
+  void page.offsetWidth;
+  page.classList.add('turning');
+
+  setTimeout(() => {
+    currentPage += 2;
+    renderBook();
+    page.classList.remove('turning');
+    pageBusy = false;
+  }, 350);
+}
+
+// ===========================================
+// CONFETTI
+// ===========================================
+function confetti() {
+  const symbols = ['💖', '✨', '🌸', '💕', '⭐', '🤍'];
+
+  for (let i = 0; i < 65; i++) {
+    const el = document.createElement('span');
+
+    el.className = 'confetti';
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (12 + Math.random() * 16) + 'px';
+    el.style.animationDuration = (3 + Math.random() * 4) + 's';
+    el.style.animationDelay = Math.random() * 1.3 + 's';
+
+    document.body.appendChild(el);
+
+    setTimeout(() => el.remove(), 8500);
+  }
+}
+
+function celebrate() {
+  confetti();
+}
+</script>
+
+</body>
+</html>
